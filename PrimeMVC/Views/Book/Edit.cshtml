@@ -1,0 +1,48 @@
+﻿@model Book
+
+<form method="post" asp-action="Edit">
+    <input asp-for="BookID" hidden class="form-control" />
+
+    <div class="border p-3 mt-4">
+        <div>
+            <h2 class="text-primary">Edit Book</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="ISBN"></label>
+            <input asp-for="ISBN" class="form-control" />
+            <span asp-validation-for="ISBN" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="PublicationYear"></label>
+            <input asp-for="PublicationYear" class="form-control" />
+            <span asp-validation-for="PublicationYear" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Genre"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+        <a asp-controller="Book" asp-action="index" class="btn btn-secondary" style="width:150px">
+            <i class="bi bi-arrow-90deg-left"></i>  Back To List
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+<parial name="_ValidationScriptsPartial" />
+}
+}

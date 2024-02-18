@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Index";
+}
+<span class="fw-bold">
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class=" = col-6">
+            <h2 class="text-primary">Book List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Book" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-square"></i> &nbsp; Create new Category
+            </a>
+        </div>
+    </div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+            <thead style="color:white">
+        <tr style="color:white">
+                    <th style="color:white">
+                ISBN
+            </th style="color:white">
+            <th style="color:white">
+                Book Title
+            </th>
+            <th style="color:white">
+                Author Name
+            </th>
+            <th style="color:white">
+                Publication Year
+            </th>
+            <th style="color:white">
+                Genre
+            </th>
+            <th style="color:white">
+                Operations:
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="10%">
+                    @obj.ISBN
+                </td>
+                <td width="20%">
+                    @obj.Title
+                </td>
+                <td width="15%">
+                    @obj.Author
+                </td>
+                <td width="15%">
+                    @obj.PublicationYear
+                </td>
+                <td width="30%">
+                    @obj.Genre
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Book" asp-action="Edit" asp-route-BookID="@obj.BookID"> <i class="bi bi-pencil-square"></i> Edit </a>
+                    </div>
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
+</div>
+</span>
