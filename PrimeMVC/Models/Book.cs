@@ -12,7 +12,7 @@ namespace PrimeMVC.Models
         public int BookID { get; set; }
 
         [Required]
-        [Range(1, 4000000)]
+        [RegularExpression(@"\d{10}")]
         public int ISBN { get; set; }
         [Required]
         [StringLength(50)]
@@ -26,7 +26,7 @@ namespace PrimeMVC.Models
         [DisplayName("Publication Year")]
         public int PublicationYear { get; set; }
         [Required]
-        [StringLength(30)]
+        [StringLength(50)]
         public string Genre { get; set; }
     }
 }

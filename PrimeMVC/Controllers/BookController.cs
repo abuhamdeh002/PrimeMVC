@@ -66,4 +66,39 @@ public BookController(ApplicationDbContext db)
         }
         return View(obj);
     }
+
+
+    //GET
+    public IActionResult Delete(int? BookID)
+    {
+        if (BookID == null || BookID == 0)
+        {
+            return NotFound();
+        }
+        var bookFromDb = _db.Books.Find(BookID);
+
+        if (bookFromDb == null)
+        {
+            return NotFound();
+        }
+        return View(bookFromDb);
+    }
+    //POST
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteBook(int? BookID)
+    {
+        var obj = _db.Books.Find(BookID);
+        if (obj == null)
+        {
+            return NotFound();
+        }
+        if (ModelState.IsValid)
+        {
+            _db.Books.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        return View(BookID);
+    }
 }
