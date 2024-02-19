@@ -3,43 +3,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Books</h2>
-
-<div>
-    <label>
-        <input type="checkbox" name="sortByGenre" onchange="filterBooks()" /> Sort by Genre
-    </label>
-</div>
-
-<div>
-    <label>
-        <input type="checkbox" name="sortByAuthor" onchange="filterBooks()" /> Sort by Author
-    </label>
-</div>
-
-<div>
-    <label>
-        <input type="checkbox" name="sortByPublicationYear" onchange="filterBooks()" /> Sort by Publication Year (Descending)
-    </label>
-</div>
+<h2 style="color:orangered">Filters</h2>
 
 <table class="table" id="booksTable">
     <thead>
         <tr>
-            <th>Genre</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Publication Year</th>
+            
+            <th style="color:steelblue">
+                <strong> Genre </strong> <div style="color:orangered">
+                    <input type="radio" id="sortByGenre" name="sortOption" value="Genre" onchange="filterBooks()" />
+                    <label for="sortByGenre"> Sort by Genre:</label>
+                </div>
+            </th>
+            <th style="color:steelblue">
+                Author <div style="color:orangered">
+                    <input type="radio" id="sortByAuthor" name="sortOption" value="Author" onchange="filterBooks()" />
+                    <label for="sortByAuthor"> Sort by Author:</label>
+                    
+                </div>
+            </th>
+            <th style="color:steelblue">
+                Publication Year <div style="color:orangered">
+                    
+                    <input type="radio" id="sortByPublicationYear" name="sortOption" value="PublicationYear" onchange="filterBooks()" />
+                    <label for="sortByPublicationYear"> Sort by Publication Year: (Descending)</label>
+                </div>
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var book in Model)
         {
             <tr>
-                <td>@book.Genre</td>
-                <td>@book.Title</td>
-                <td>@book.Author</td>
-                <td>@book.PublicationYear</td>
+                <td style="color:white">@book.Genre </td>
+                <td style="color:white">@book.Author</td>
+                <td style="color:white">@book.PublicationYear</td>
             </tr>
         }
     </tbody>
@@ -53,10 +51,8 @@
             var sortingIndex = -1;
             var isDescending = false;
 
-            // Checkboxes
-            var sortByGenre = document.getElementsByName("sortByGenre")[0].checked;
-            var sortByAuthor = document.getElementsByName("sortByAuthor")[0].checked;
-            var sortByPublicationYear = document.getElementsByName("sortByPublicationYear")[0].checked;
+            // Get selected sorting option
+            var sortOption = document.querySelector('input[name="sortOption"]:checked').value;
 
             // Reset sorting classes
             for (var i = 0; i < rows[0].getElementsByTagName("th").length; i++) {
@@ -64,12 +60,12 @@
             }
 
             // Apply sorting
-            if (sortByGenre) {
+            if (sortOption === "Genre") {
                 sortingIndex = 0; // Genre is at index 0
-            } else if (sortByAuthor) {
-                sortingIndex = 2; // Author is at index 2
-            } else if (sortByPublicationYear) {
-                sortingIndex = 3; // Publication Year is at index 3
+            } else if (sortOption === "Author") {
+                sortingIndex = 1; // Author is at index 2
+            } else if (sortOption === "PublicationYear") {
+                sortingIndex = 2; // Publication Year is at index 3
                 isDescending = true; // Sort by Publication Year in descending order
             }
 

@@ -6,13 +6,13 @@ using PrimeMVC.Models;
 public class FilterController(ApplicationDbContext db) : Controller
 {
     // GET: Books
-    public ActionResult Index(string isbn, string author, int? publicationYear)
+    public ActionResult Index(string genre, string author, int? publicationYear)
     {
         var books = db.Books.AsQueryable();
 
-        if (!string.IsNullOrEmpty(isbn))
+        if (!string.IsNullOrEmpty(genre))
         {
-            books = books.Where(b => b.Genre.Contains(isbn));
+            books = books.Where(b => b.Genre.Contains(genre));
         }
 
         if (!string.IsNullOrEmpty(author))
@@ -25,7 +25,7 @@ public class FilterController(ApplicationDbContext db) : Controller
             books = books.Where(b => b.PublicationYear == publicationYear);
         }
 
-        var model = books.OrderBy(b => b.ISBN).ToList();
+        var model = books.OrderBy(b => b.Genre).ToList();
 
         return View(model);
     }

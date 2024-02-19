@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using PrimeMVC.Data;
 using PrimeMVC.Models;
 
 namespace PrimeMVC.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController(ApplicationDbContext db) : Controller
     {
         public IActionResult Index()
         {
@@ -30,7 +32,37 @@ namespace PrimeMVC.Controllers
             int index = random.Next(quotes.Count);
             ViewBag.Quote = quotes[index];
 
+
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Test()
+        {
+            //if (string.IsNullOrEmpty(email))
+            //{
+            //    return BadRequest("The Email is required");
+            //}
+
+            //if (string.IsNullOrEmpty(password))
+            //{
+            //    return BadRequest("The password is required");
+            //}
+
+            //var user = await db.Users.FirstAsync(user => user.Email == email);
+            
+            //if (user == null)
+            //{
+            //    return NotFound("The User not found");
+            //}
+
+            //if(user.PasswordHash != password) {
+
+            //    return BadRequest("Invalid Email Or password"); 
+            //}
+
+
+            return Redirect("index");
         }
     }
 }

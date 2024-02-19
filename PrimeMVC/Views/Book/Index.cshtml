@@ -7,17 +7,11 @@
     <div class="row pt-4">
         <div class=" = col-6">
             <h2 class="text-primary">Book List</h2>
-        </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Book" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-square"></i> &nbsp; Create new Category
-            </a>
-        </div>
     </div>
 
 <table class="table table-bordered table-striped" style="width:100%">
             <thead style="color:white">
-        <tr style="text-align:center" style="color:white">
+        <tr style="color:white">
                     <th style="color:steelblue">
                 ISBN
             </th style="color:white">
@@ -42,7 +36,7 @@
     <tbody style="color:white">
         @foreach (var obj in Model)
         {
-            <tr style="text-align:center" >
+            <tr>
                 <td style="color:white" width="10%">
                     @obj.ISBN
                 </td>
@@ -61,11 +55,11 @@
                 <td>
                     <div class="w-75 btn-group" role="group">
                         <a asp-controller="Book" asp-action="Create" asp-route-BookID="@obj.BookID">
-                                <i class=" m-1 btn btn-primary bi bi-plus-square"></i> </a>
+                                <i class=" m-2 pt-2 btn btn-primary bi bi-plus-square"></i> </a>
                             <a asp-controller="Book" asp-action="Edit" asp-route-BookID="@obj.BookID">
-                                <i class=" m-1 btn btn-primary btn bi bi-pencil-square"></i> </a>
+                                <i class=" m-2 pt-2 btn btn-primary btn bi bi-pencil-square"></i> </a>
                             <a asp-controller="Book" asp-action="Delete" asp-route-BookID="@obj.BookID">
-                                <i class=" m-1 btn btn-danger bi bi-trash"></i> </a>
+                                <i class=" m-2 pt-2 btn btn-danger bi bi-trash"></i> </a>
                     </div>
                 </td>
             </tr>

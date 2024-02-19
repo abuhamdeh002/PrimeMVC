@@ -31,6 +31,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Filter" asp-action="Index">Filters</a>
                         </li>
+                        <li class="nav-item" >
+                            <a asp-controller="Welcome" asp-action="index" class="btn btn-danger">
+                                <i class="bi bi-box-arrow-left"></i> &nbsp; Logout
+                                 
+                                </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -42,11 +48,9 @@
         </main>
     </div>
     
-    <footer class="border-top p-3 footer text-muted">
+    <footer class="border-top p-3 footer text-center" style="position:absolute; bottom:0; height:fit-content; width:100%;">
         <div class="container">
-            
-                &copy; Abuhamdeh's Book Center -<a asp-area="" asp-controller="Welcome" asp-action="index">logout</a>
-
+                &copy; Abuhamdeh's Book Center
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
