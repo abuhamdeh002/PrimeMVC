@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PrimeMVC.Data;
 using PrimeMVC.Models;
 
 namespace PrimeMVC.Controllers;
+[Authorize(Roles = "Admin")]
 public class BookController : Controller
 {
     private readonly ApplicationDbContext _db;

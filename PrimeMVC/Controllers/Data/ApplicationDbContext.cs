@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PrimeMVC.Models;
+using System.Data;
 
 namespace PrimeMVC.Data
 {
@@ -9,6 +10,39 @@ namespace PrimeMVC.Data
     {
       
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
+        // AppDbContext.cs
+        public class AppDbContext : DbContext
+        {
+         
+
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                modelBuilder.Entity<User>(entity =>
+                {
+                    entity.ToTable("Users");
+                    // Configure relationships and properties as needed
+                });
+
+                modelBuilder.Entity<IdentityRole>(entity =>
+                {
+                    entity.ToTable("Roles");
+                    // Configure relationships and properties as needed
+                });
+            }
+        }
+
+        // User.cs
+        public class User : IdentityUser
+        {
+            public string Username { get; set; }
+            // Additional properties as needed
+        }
+
+
+        public ApplicationDbContext()
         {
 
         }
@@ -28,7 +62,18 @@ namespace PrimeMVC.Data
             builder.Entity<IdentityUser>().Ignore(i => i.PhoneNumberConfirmed);
             builder.Entity<IdentityUser>().Ignore(i => i.SecurityStamp);
             builder.Entity<IdentityUser>().Ignore(i => i.PhoneNumber);
+
+
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "Admin",
+                NormalizedName = "admin",
+                ConcurrencyStamp = DateTime.Now.ToString()
+            });
         }
         public DbSet<Book> Books { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<IdentityRole> Roles { get; set; }
     }
 }

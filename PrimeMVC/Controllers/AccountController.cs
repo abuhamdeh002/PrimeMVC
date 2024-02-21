@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PrimeMVC.Models;
 
 namespace PrimeMVC.Controllers
 {
@@ -13,6 +14,10 @@ namespace PrimeMVC.Controllers
             return View();
         }
         public IActionResult Logout()
+        {
+            return View();
+        }
+        public IActionResult UserManagement()
         {
             return View();
         }
