@@ -4,7 +4,7 @@ using PrimeMVC.Data;
 using PrimeMVC.Models;
 
 namespace PrimeMVC.Controllers;
-[Authorize(Roles = "Admin")]
+//[Authorize(Roles = "Admin")]
 public class BookController : Controller
 {
     private readonly ApplicationDbContext _db;
@@ -33,12 +33,13 @@ public class BookController : Controller
     {
         if (ModelState.IsValid)
         {
+            obj.BookID = 0;
             _db.Books.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        return View(obj);
+        return View();
     }
 
     //GET
