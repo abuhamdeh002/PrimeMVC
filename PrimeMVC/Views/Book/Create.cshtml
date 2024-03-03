@@ -11,8 +11,7 @@
             <input asp-for="ISBN" class="form-control"/>
             <span asp-validation-for="ISBN" class="text-danger"></span>
         </div>
-        <div class="mb-3">
-            <label asp-for="Title"></label>
+l            <label asp-for="Title"></label>
             <input asp-for="Title" class="form-control" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
@@ -33,7 +32,7 @@
             <span asp-validation-for="Genre" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary" style="width:150px">Add</button>
-        <a asp-controller="Book" asp-action="Create" class="btn btn-secondary" style="width:150px">
+        <a asp-controller="Book" asp-action="Index" class="btn btn-secondary" style="width:150px">
             <i class="bi bi-arrow-90deg-left"></i>  Back To List
         </a>
     </div>
